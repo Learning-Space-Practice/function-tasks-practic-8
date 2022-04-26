@@ -51,13 +51,13 @@ document.querySelector('.b-3').addEventListener('click', function () {
 // Давайте напишем pure функцию t4, которая выводит переданный ей массив (как аргумент arr) в блок (переданный как аргумент block) через пробел. Функция запускается по кнопке .b-4. 
 function t4(arr,block) {
     console.log(arr,block)
-    arr.map(item => {
-        item 
-    })
-
-    block.textContent = 'yes'
+    let res = ''
+    for(let i = 0; i< arr.length; i++){
+        res = res + ' ' + arr[i]
+    }
+    console.log(res)
+    block.innerHTML = res
 }
-
 
 document.querySelector('.b-4').addEventListener('click', function () {
    t4([1,5,8,5],document.querySelector('.out-4'))
@@ -65,9 +65,31 @@ document.querySelector('.b-4').addEventListener('click', function () {
 // Task 5
 // Давайте напишем pure функцию t5, которая проверяет наличие элемента класс которой передан ей как аргумент (например '.out-5') на странице и возвращает true или false. Функция запускается по кнопке .b-5. 
 
+function t5(cl){
+  const res = document.querySelector(cl)
+  if(res === null){
+      return false
+  } else return true
+}
+
+document.querySelector('.b-5').addEventListener('click', function () {
+    document.querySelector('.out-5').innerHTML = t5('.out-5')
+ })
+
 // Task 6
 // Давайте напишем pure функцию t6, которая получает массив и возвращает его развернутым на 180 градусов ( чистый аналог reverse ). Функция запускается по кнопке .b-6. Для проверки - выводите результат на страницу, через пробел.
+function t6(arr) {
+    res = ''
+    for(let i = arr.length-1; i >= 0; i--){
+        res = res + ' ' + arr[i]
+    }
+    console.log(res)
+    return  res
+}
 
+document.querySelector('.b-6').addEventListener('click', function () {
+    document.querySelector('.out-6').innerHTML = t6([1,5,8,5])
+})
 
 // Task 7
 // Давайте напишем функцию t7, которая позволяет выводить текст переданный ей в качестве аргумента text в блок block. При этом переданный текст с помощью trim очищается от пробелов до и после и переводится в нижний регистр. Ваша задача модицифировать функцию и запуск так, чтобы она стала pure.
@@ -75,11 +97,12 @@ document.querySelector('.b-4').addEventListener('click', function () {
 const out7 = document.querySelector('.out-7');
 
 function t7(block, text) {
-
+    let res = text.trim()
+    block.innerHTML = res.toLowerCase()
 }
 
 document.querySelector('.b-7').addEventListener('click', function () {
-    t7(out8, ' HelLO wORLd       ');
+    t7(out7, ' HelLO wORLd       ');
 })
 
 
@@ -88,11 +111,40 @@ document.querySelector('.b-7').addEventListener('click', function () {
 
 let a8 = [1998, 2000, 1999, 2002, 2005];
 let year = 1998;
+function t8 (arr,year){
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i] >= year){
+            return true
+        }else return false
+    }
+}
 
-
+document.querySelector('.b-8').addEventListener('click', function () {
+    document.querySelector('.out-8').innerHTML = t8(a8,year);
+})
 // Task 9
 // Метод push мутирует массив. Давайте напишем pure функцию t9 которая принимает массив и число в качестве аргумента и возвращает новый массив равный исходному с добавленным в него числом ( добавленным в конце массива). Запускаться функция дожна при нажатии  на кнопку b-9. Для проверки - выводите результат на страницу через пробел. 
 
+function t9 (arr,num){
+   arr.push(num)
+   return arr.join(' ')
+}
+
+document.querySelector('.b-9').addEventListener('click', function () {
+    document.querySelector('.out-9').innerHTML = t9([1,5,89,9],8);
+})
 // Task 10
 // Метод push мутирует массив. Давайте напишем pure функцию t10 которая принимает массив и любое количество чисел в качестве аргументов и возвращает новый массив равный исходному с добавленными в него числами ( добавленным в конце массива). Запускаться функция дожна при нажатии  на кнопку b-10. Для проверки - выводите результат на страницу через пробел. 
 
+function t10 (arr,...num){
+    console.log(num)
+    for(let i = 0; i < num.length; i++){
+        arr.push(num[i])
+    }
+    
+    return arr.join(' ')
+ }
+ 
+ document.querySelector('.b-10').addEventListener('click', function () {
+     document.querySelector('.out-10').innerHTML = t10([1,5,89,9],8,6,6,5);
+ })
